@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "NextGym",
+    "slug": "NextGym",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "NextGym"
+}
