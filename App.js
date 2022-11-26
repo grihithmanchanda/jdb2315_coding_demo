@@ -1,19 +1,34 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { Component } from "react";
 import { StyleSheet, Text, View } from 'react-native';
+// import { Container, Row, Col } from "react-bootstrap";
+// import { StatusBar } from 'expo-status-bar';
+import EquipmentList from './src/components/EquipmentList'
 // import { getDocs } from 'firebase/firestore/lite';
 // import { auth, firestoredb } from './firebase-config'
-import EquipmentList from './src/components/EquipmentList'
 
-export default function App() {
+class NextGymApp extends Component {
 
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-      <EquipmentList></EquipmentList>
-    </View>
-  );
+  render() {
+    return (
+      // <>
+      <View style={styles.container}>
+        <Text>Open up App.js to start working on your app!</Text>
+
+        {/* <Container>
+          <Row>
+            <Col>
+              <StatusBar style="auto" />
+            </Col>
+          </Row>
+          <Row>
+            <Col> <EquipmentList/> </Col>
+          </Row>
+        </Container> */}
+        <EquipmentList/>
+      </View>
+      // </>
+    )
+  }
 }
 
 const styles = StyleSheet.create({
@@ -25,3 +40,4 @@ const styles = StyleSheet.create({
   },
 });
 
+export default NextGymApp;
