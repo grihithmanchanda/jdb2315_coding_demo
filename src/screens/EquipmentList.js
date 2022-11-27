@@ -22,7 +22,7 @@ const EquipmentList = (props) => {
 
     useEffect(() => {
         getEquipmentList();
-        addEquipmentTest();
+        // addEquipmentTest();
     }, []);
 
     const getEquipmentList = async () => {
@@ -126,6 +126,7 @@ const EquipmentList = (props) => {
                     onPress={() => {
                         handleAddEquipment(eqName, eqQuantity, biceps, triceps, back, chest, legs, abs)
                         setModalVisible(false)
+                        getEquipmentList()
                         }}>
                         <Text style={styles.buttonText}>Add Equipment</Text>
                     </TouchableOpacity>

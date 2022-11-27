@@ -11,21 +11,10 @@ class NextGymApp extends Component {
   render() {
     return (
       <>
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-
-        {/* <Container>
-          <Row>
-            <Col>
-              <StatusBar style="auto" />
-            </Col>
-          </Row>
-          <Row>
-            <Col> <EquipmentList/> </Col>
-          </Row>
-        </Container> */}
-      </View>
-      <EquipmentList/>
+        {/* <View style={styles.container}>
+          <Text>Open up App.js to start working on your app!</Text>
+        </View> */}
+        <EquipmentList/>
       </>
     )
   }
