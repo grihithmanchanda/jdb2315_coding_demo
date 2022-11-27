@@ -6,8 +6,6 @@ import EquipmentService from "../services/equipment_service";
 import { Modal } from "../components/Modal";
 import { CheckBox } from 'react-native-elements'
 
-
-
 const EquipmentList = (props) => {
     const [tableRows, setTableRows] = useState([['a', 'b', 'c']])
     const [modalVisible, setModalVisible] = useState(false)
@@ -67,6 +65,13 @@ const EquipmentList = (props) => {
                 <Modal.Container>
                 <Modal.Header title="Add Equipment" />
                 <Modal.Body>
+                    <TouchableOpacity
+                        style={styles.backButton}
+                        onPress={() => {
+                            setModalVisible(false)
+                            }}>
+                        <Text style={styles.buttonText}>Back</Text>
+                    </TouchableOpacity>
                     <Text style={styles.modalText}>Name</Text>
                     <TextInput
                         style={styles.input}
@@ -111,7 +116,7 @@ const EquipmentList = (props) => {
                     <TextInput
                         style={styles.input}
                         placeholder="e.g. 5"
-                        keyboardType="numeric"
+                        keyboardType="default"
                         onChangeText={(val) => setEqQuantity(val)}
                     />
                 </Modal.Body>
@@ -147,6 +152,23 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         width: '100%',
+        backgroundColor: '#2AC062',
+        shadowColor: '#2AC062',
+        shadowOpacity: 0.5,
+        shadowOffset: { 
+          height: 10, 
+          width: 0 
+        },
+        shadowRadius: 25,
+      },
+    backButton: {
+        display: 'flex',
+        marginTop: 20,
+        height: 30,
+        borderRadius: 6,
+        justifyContent: 'left',
+        alignItems: 'left',
+        width: '15%',
         backgroundColor: '#2AC062',
         shadowColor: '#2AC062',
         shadowOpacity: 0.5,
