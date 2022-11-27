@@ -3,8 +3,6 @@ import { Text, View, TouchableOpacity, StyleSheet, TextInput } from 'react-nativ
 import { Table, TableWrapper, Row, Rows, Col } from 'react-native-table-component';
 // import { Table } from "react-bootstrap"; // no longer using react-bootstrap
 import EquipmentService from "../services/equipment_service";
-import { collection } from "firebase/firestore"
-import { firestoredb } from "../../firebase-config"
 import { Modal } from "../components/Modal";
 import { CheckBox } from 'react-native-elements'
 
@@ -121,7 +119,7 @@ const EquipmentList = (props) => {
                     <TouchableOpacity
                     style={styles.button}
                     onPress={() => {
-                        // handleAddEquipment()
+                        handleAddEquipment(eqName, eqQuantity, biceps, triceps, back, chest, legs, abs)
                         setModalVisible(false)
                         }}>
                         <Text style={styles.buttonText}>Add Equipment</Text>
@@ -177,8 +175,28 @@ const generateTableRows = (equipmentQuery) => {
     return equipmentData.map((eq) => [eq.id, eq.data['count'], eq.data['muscle groups'].toString()])
 }
 
-const handleAddEquipment = () => {
-    
+const handleAddEquipment = (eqName, eqQuantity, biceps, triceps, back, chest, legs, abs) => {
+    muscleGroups = []
+    if (biceps) {
+        muscleGroups.push('biceps')
+    }
+    if (triceps) {
+        muscleGroups.push('triceps')
+    }
+    if (back) {
+        muscleGroups.push('back')
+    }
+    if (chest) {
+        muscleGroups.push('chest')
+    }
+    if (legs) {
+        muscleGroups.push('legs')
+    }
+    if (abs) {
+        muscleGroups.push('abs')
+    }
+
+    EquipmentService.addEquipment(eqName, eqQuantity, muscleGroups)
 }
 
 export default EquipmentList;
