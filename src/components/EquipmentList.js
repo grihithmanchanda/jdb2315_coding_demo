@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 // import { Table } from "react-bootstrap"; // no longer using react-bootstrap
 import EquipmentService from "../services/equipment_service";
 import { collection } from "firebase/firestore"
@@ -14,17 +14,20 @@ const EquipmentList = (props) => {
         getEquipmentList();
     }, []);
 
-    const renderItem = ({ item, index}) => {
-        // <EquipmentList item = {item}/>
-        <Text> {item} </Text>
-    }
+    // const renderItem = ({ item, index}) => {
+    //     // <EquipmentList item = {item}/>
+    //     <View key={item.id}>
+    //         <Text> {item.count} </Text>
+    //     </View>
+    // }
 
     const getEquipmentList = async () => {
         console.log('getting equipment...');
-        const equipmentData = await EquipmentService.getAllEquipment();
-        if (equipmentData !== null) {
-          setEquipment(equipmentData.docs.map((doc) => ({...doc.data, id: doc.id})))  
-          console.log('equipmentData', this.state.equipment);
+        const equipmentQuery = await EquipmentService.getAllEquipment();
+        if (equipmentQuery !== null) {
+            equipmentData = equipmentQuery.docs.map((doc) => ({...doc.data(), id: doc.id}))
+            setEquipment(equipmentData)  
+            console.log('equipmentData', equipment);
         }
     }
 
@@ -51,12 +54,14 @@ const EquipmentList = (props) => {
         //     </tbody>
         // </Table>
 
-        <FlatList style={{width: "100%"}}
-            renderItem={renderItem}
-            data={this.state.equipment}
-            keyExtractor={item => item.key}
-            keyboardShouldPersistTaps="handled"
-        />
+        // <FlatList style={{width: "100%"}}
+        //     renderItem={renderItem}
+        //     data={equipment}
+        //     keyExtractor={item => item.id}
+        //     keyboardShouldPersistTaps="handled"
+        // />
+
+        <></>
 
     )
 }
