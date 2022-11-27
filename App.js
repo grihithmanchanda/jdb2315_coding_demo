@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View } from 'react-native';
 // import { Container, Row, Col } from "react-bootstrap";
 // import { StatusBar } from 'expo-status-bar';
-import EquipmentList from './src/components/EquipmentList'
+import EquipmentList from './src/screens/EquipmentList'
 // import { getDocs } from 'firebase/firestore/lite';
 // import { auth, firestoredb } from './firebase-config'
 

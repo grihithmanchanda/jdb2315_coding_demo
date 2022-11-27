@@ -8,7 +8,7 @@ class EquipmentService {
         return getDocs(equipmentCollectionRef)
     };
 
-    addEquipment = async(equipmentName, equipmentCount, equipmentMuscleGroups) => {
+    addEquipment = async (equipmentName, equipmentCount, equipmentMuscleGroups) => {
         equipmentData = {
             // 'id': equipmentName,
             'count': equipmentCount,
