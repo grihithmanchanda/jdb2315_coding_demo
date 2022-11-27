@@ -7,40 +7,38 @@ import { collection } from "firebase/firestore"
 import {firestoredb } from "../../firebase-config"
 
 const EquipmentList = (props) => {
-    const [equipment, setEquipment] = useState({'bar':'test'});
+    const [tableRows, setTableRows] = useState([['a', 'b', 'c']]);
     const equipmentCollectionRef = collection(firestoredb, "equipment");
 
-    let tableHead= ['', 'Head1', 'Head2', 'Head3']
-    let tableTitle= ['Title', 'Title2', 'Title3', 'Title4']
+    let tableHead= ['Head1', 'Head2', 'Head3']
     let tableData= [
-      ['1', '2', '3'],
-      ['a', 'b', 'c'],
-      ['1', '2', '3'],
-      ['a', 'b', 'c']
-    ]
+        ['1', '2', '3'],
+        ['a', 'b', 'c'],
+        ['1', '2', '3'],
+        ['a', 'b', 'c']
+      ]
 
     useEffect( () => {
         getEquipmentList();
     }, []);
-
-    // const renderItem = ({ item, index}) => {
-    //     // <EquipmentList item = {item}/>
-    //     <View key={item.id}>
-    //         <Text> {item.count} </Text>
-    //     </View>
-    // }
 
     const getEquipmentList = async () => {
         console.log('getting equipment...');
         const equipmentQuery = await EquipmentService.getAllEquipment();
         if (equipmentQuery !== null) {
             equipmentData = equipmentQuery.docs.map((doc) => ({data:doc.data(), id: doc.id}))
-            setEquipment(equipmentData)  
-            console.log('equipmentData', equipmentData);
+            let rows = []
+            for (let i = 0; i < equipmentData.length; i++) {
+                rows.push([equipmentData[i]["id"], equipmentData[i]["data"]["count"], equipmentData[i]["data"]["muscle groups"].join(', ')])
+            }
+            setTableRows(rows)
         }
-        console.log(equipment)
+        console.log('---------')
+        console.log(tableRows)
+        console.log('---------')
     }
 
+    console.log('before return', tableRows)
     return (
         // <Table responsive striped bordered hover>
         //     <thead>
@@ -72,13 +70,12 @@ const EquipmentList = (props) => {
         // />
 
         // <></>
-
         <View style={styles.container}>
             <Table borderStyle={{borderWidth: 1}}>
-            <Row data={tableHead} flexArr={[1, 2, 1, 1]} style={styles.head} textStyle={styles.text}/>
+            <Row data={tableHead} flexArr={[2, 1, 1]} style={styles.head} textStyle={styles.text}/>
             <TableWrapper style={styles.wrapper}>
-                <Col data={tableTitle} style={styles.title} heightArr={[28,28]} textStyle={styles.text}/>
-                <Rows data={tableData} flexArr={[2, 1, 1]} style={styles.row} textStyle={styles.text}/>
+                {/* <Col data={tableTitle} style={styles.title} heightArr={[28,28]} textStyle={styles.text}/> */}
+                <Rows data={tableRows} flexArr={[2, 1, 1]} style={styles.row} textStyle={styles.text}/>
             </TableWrapper>
             </Table>
         </View>
